@@ -10,7 +10,8 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "generate-icons": "node ./scripts/create-icons.js",
-    "build:all": "node ./scripts/build-all.js"
+    "build:all": "node ./scripts/build-all.js",
+    "build:android": "node ./scripts/build-android-apks.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",

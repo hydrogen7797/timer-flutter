@@ -17,19 +17,19 @@ console.log('=== 3分プロトコルアプリ ビルドスクリプト ===\n');
 
 // app.jsonを一時的にバックアップ
 const originalAppJson = 'app.json';
-const backupAppJson = 'app.json.backup';
+const backupAppJsonPath = 'app.json.backup';
 
 function backupAppJson() {
   if (fs.existsSync(originalAppJson)) {
-    fs.copyFileSync(originalAppJson, backupAppJson);
+    fs.copyFileSync(originalAppJson, backupAppJsonPath);
     console.log('app.jsonをバックアップしました\n');
   }
 }
 
 function restoreAppJson() {
-  if (fs.existsSync(backupAppJson)) {
-    fs.copyFileSync(backupAppJson, originalAppJson);
-    fs.unlinkSync(backupAppJson);
+  if (fs.existsSync(backupAppJsonPath)) {
+    fs.copyFileSync(backupAppJsonPath, originalAppJson);
+    fs.unlinkSync(backupAppJsonPath);
     console.log('app.jsonを復元しました\n');
   }
 }
