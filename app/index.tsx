@@ -1,15 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, BackHandler } from 'react-native';
-import * as Haptics from 'expo-haptics';
-import { getAppConfig } from '@/config/app-config';
+import { getAppConfig } from "@/config/app-config";
+import * as Haptics from "expo-haptics";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  BackHandler,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-type Screen = 'launch' | 'execution' | 'end';
+type Screen = "launch" | "execution" | "end";
 
 // タイマー区間（秒）
 const INTERVALS = [30, 90, 30, 30]; // 合計180秒（3分）
 
 export default function TimerApp() {
-  const [screen, setScreen] = useState<Screen>('launch');
+  const [screen, setScreen] = useState<Screen>("launch");
   const [currentIntervalIndex, setCurrentIntervalIndex] = useState(0);
   const [remainingTime, setRemainingTime] = useState(INTERVALS[0]);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -17,16 +23,19 @@ export default function TimerApp() {
 
   // 戻るボタンを無効化
   useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      return true; // 戻るボタンを無効化
-    });
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        return true; // 戻るボタンを無効化
+      },
+    );
 
     return () => backHandler.remove();
   }, []);
 
   // タイマー処理
   useEffect(() => {
-    if (screen !== 'execution') {
+    if (screen !== "execution") {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
@@ -44,7 +53,7 @@ export default function TimerApp() {
         if (prev <= 1) {
           // 区間終了
           const nextIndex = currentIndex + 1;
-          
+
           if (nextIndex < INTERVALS.length) {
             // 次の区間へ
             currentIndex = nextIndex;
@@ -64,7 +73,7 @@ export default function TimerApp() {
             }, 300);
             // 終了画面へ
             setTimeout(() => {
-              setScreen('end');
+              setScreen("end");
             }, 100);
             return 0;
           }
@@ -82,18 +91,20 @@ export default function TimerApp() {
   }, [screen]);
 
   const handleStart = () => {
-    setScreen('execution');
+    setScreen("execution");
     setCurrentIntervalIndex(0);
     setRemainingTime(INTERVALS[0]);
   };
 
   const handleClose = () => {
-    // アプリを終了（実際の実装では、必要に応じて処理を追加）
-    // ここでは何もしない（静かに放す）
+    // ユーザー操作による明示的な終了（自動強制終了はしない）
+    if (BackHandler.exitApp) {
+      BackHandler.exitApp();
+    }
   };
 
   // 起動画面
-  if (screen === 'launch') {
+  if (screen === "launch") {
     return (
       <View style={styles.launchContainer}>
         <TouchableOpacity style={styles.startButton} onPress={handleStart}>
@@ -105,7 +116,7 @@ export default function TimerApp() {
   }
 
   // 実行画面
-  if (screen === 'execution') {
+  if (screen === "execution") {
     return (
       <View style={styles.executionContainer} pointerEvents="none">
         <Text style={styles.executionText}>
@@ -129,68 +140,68 @@ export default function TimerApp() {
 const styles = StyleSheet.create({
   launchContainer: {
     flex: 1,
-    backgroundColor: '#111111',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#111111",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
   launchText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 18,
     marginTop: 40,
-    textAlign: 'center',
+    textAlign: "center",
   },
   startButton: {
-    backgroundColor: '#333333',
+    backgroundColor: "#333333",
     paddingHorizontal: 60,
     paddingVertical: 20,
     borderRadius: 8,
     minWidth: 200,
-    alignItems: 'center',
+    alignItems: "center",
   },
   startButtonText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: "500",
   },
   executionContainer: {
     flex: 1,
-    backgroundColor: '#141414',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#141414",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 40,
   },
   executionText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     lineHeight: 32,
   },
   endContainer: {
     flex: 1,
-    backgroundColor: '#0F0F0F',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "#0F0F0F",
+    justifyContent: "center",
+    alignItems: "center",
     padding: 40,
   },
   endText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 60,
     lineHeight: 32,
   },
   closeButton: {
-    backgroundColor: '#333333',
+    backgroundColor: "#333333",
     paddingHorizontal: 60,
     paddingVertical: 20,
     borderRadius: 8,
     minWidth: 200,
-    alignItems: 'center',
+    alignItems: "center",
   },
   closeButtonText: {
-    color: '#FFFFFF',
+    color: "#FFFFFF",
     fontSize: 18,
-    fontWeight: '500',
+    fontWeight: "500",
   },
 });
