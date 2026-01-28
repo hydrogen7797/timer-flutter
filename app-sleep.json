@@ -1,22 +1,22 @@
 {
   "expo": {
-    "name": "END 3min",
-    "slug": "end-3min",
+    "name": "SLEEP 3min",
+    "slug": "sleep-3min",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon-end.png",
-    "scheme": "end3min",
+    "icon": "./assets/images/icon-sleep.png",
+    "scheme": "sleep3min",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.timer.end3min"
+      "bundleIdentifier": "com.timer.sleep3min"
     },
     "android": {
-      "package": "com.timer.end3min",
+      "package": "com.timer.sleep3min",
       "adaptiveIcon": {
         "backgroundColor": "#111111",
-        "foregroundImage": "./assets/images/icon-end.png"
+        "foregroundImage": "./assets/images/icon-sleep.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
@@ -26,7 +26,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/icon-end.png",
+          "image": "./assets/images/icon-sleep.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#111111"
@@ -38,7 +38,7 @@
       "reactCompiler": true
     },
     "extra": {
-      "appType": "END"
+      "appType": "SLEEP"
     }
   }
 }

@@ -1,50 +1,99 @@
-# Welcome to your Expo app 👋
+# 3分プロトコルアプリ
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+3つのタイマーアプリを1つのコードベースから生成するReact Native（Expo）プロジェクトです。
 
-## Get started
+## アプリ一覧
 
-1. Install dependencies
+1. **END 3min** - 終業前の3分を開始
+2. **SLEEP 3min** - 寝る前の3分を開始
+3. **NOW NOT DECIDE** - 今は決めない
 
-   ```bash
-   npm install
-   ```
+## 機能
 
-2. Start the app
+- 3分間のタイマー（30-90-30-30秒の4区間）
+- 各アプリ専用のテキスト表示
+- Haptic Feedback（触覚振動）
+- シンプルなUI（背景色のみ、タイマー表示なし）
 
-   ```bash
-   npx expo start
-   ```
+## 開発
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+### セットアップ
 
 ```bash
-npm run reset-project
+npm install
+npm run generate-icons
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 起動
 
-## Learn more
+```bash
+# デフォルト（END 3min）で起動
+npm start
 
-To learn more about developing your project with Expo, look at the following resources:
+# 特定のアプリで起動する場合
+cp app-end.json app.json    # または app-sleep.json, app-decide.json
+npm start
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## ビルド
 
-## Join the community
+詳細は [README-BUILD.md](./README-BUILD.md) を参照してください。
 
-Join our community of developers creating universal apps.
+### クイックビルド
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+# アイコン生成
+npm run generate-icons
+
+# 各アプリのビルド（app.jsonを置き換えてから）
+cp app-end.json app.json
+eas build --platform ios --profile production
+eas build --platform android --profile production
+```
+
+## プロジェクト構成
+
+```
+.
+├── app/
+│   ├── _layout.tsx      # ルートレイアウト
+│   └── index.tsx        # メインアプリ画面
+├── config/
+│   └── app-config.ts    # アプリ設定（3アプリのテキストと色）
+├── assets/
+│   └── images/          # アイコン画像
+├── scripts/
+│   ├── create-icons.js  # アイコン生成スクリプト
+│   └── build-all.js     # ビルドスクリプト
+├── app-end.json         # END 3min設定
+├── app-sleep.json       # SLEEP 3min設定
+└── app-decide.json      # NOW NOT DECIDE設定
+```
+
+## 仕様
+
+### 画面遷移
+1. 起動画面 → 「開始」ボタン
+2. 実行情報（3分間、自動進行）
+3. 終了画面 → 「閉じる」ボタン
+
+### タイマー区間
+- ① 30秒
+- ② 90秒
+- ③ 30秒
+- ④ 30秒
+合計: 180秒（3分）
+
+### Haptic Feedback
+- 開始時: 軽い振動1回
+- 区間切替時: 軽い振動1回
+- 終了時: 軽い振動2回（0.3秒間隔）
+
+### 制約
+- 戻る/やり直し/スキップ不可
+- 再起動時は必ず起動画面から開始
+- ログインなし、DB保存なし、広告なし、通知なし
+
+## ライセンス
+
+Private

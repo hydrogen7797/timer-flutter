@@ -1,22 +1,22 @@
 {
   "expo": {
-    "name": "END 3min",
-    "slug": "end-3min",
+    "name": "NOW NOT DECIDE",
+    "slug": "now-not-decide",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon-end.png",
-    "scheme": "end3min",
+    "icon": "./assets/images/icon-decide.png",
+    "scheme": "nownotdecide",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.timer.end3min"
+      "bundleIdentifier": "com.timer.nownotdecide"
     },
     "android": {
-      "package": "com.timer.end3min",
+      "package": "com.timer.nownotdecide",
       "adaptiveIcon": {
         "backgroundColor": "#111111",
-        "foregroundImage": "./assets/images/icon-end.png"
+        "foregroundImage": "./assets/images/icon-decide.png"
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
@@ -26,7 +26,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/icon-end.png",
+          "image": "./assets/images/icon-decide.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#111111"
@@ -38,7 +38,7 @@
       "reactCompiler": true
     },
     "extra": {
-      "appType": "END"
+      "appType": "DECIDE"
     }
   }
 }
