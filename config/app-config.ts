@@ -22,7 +22,7 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
     executionTexts: [
       "いま、残っている感覚を一つだけ感じる",
       "吐く終わりで、抜ける方向だけ許可",
-      "言葉が出たら「今は使わない」と一回だけ",
+      "言葉が出たら\n「今は使わない」と一回だけ",
       "さっきより弱い、が一つあれば十分",
     ],
     endText: "今日は切り替わった気がする",
@@ -38,7 +38,7 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
     executionTexts: [
       "いま、残っている感覚を一つだけ感じる",
       "吐く終わりで、抜ける方向だけ許可",
-      "言葉が出たら「今は使わない」と一回だけ",
+      "言葉が出たら\n「今は使わない」と一回だけ",
       "さっきより弱い、が一つあれば十分",
     ],
     endText: "このまま何もしないでください",
@@ -54,7 +54,7 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
     executionTexts: [
       "いま決めたい感覚を、一つだけ感じる",
       "吐く終わりで、抜ける方向だけ許可",
-      "言葉が出たら「今は決めない」と一回だけ",
+      "言葉が出たら\n「今は決めない」と一回だけ",
       "「さっきより弱い」が一つあれば終了",
     ],
     endText: "終わりました。何もしないでください",

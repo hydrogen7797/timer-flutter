@@ -1,13 +1,7 @@
 import { getAppConfig } from "@/config/app-config";
 import * as Haptics from "expo-haptics";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  BackHandler,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { BackHandler, StyleSheet, Text, View } from "react-native";
 
 type Screen = "launch" | "execution" | "end";
 
@@ -18,7 +12,7 @@ export default function TimerApp() {
   const [screen, setScreen] = useState<Screen>("launch");
   const [currentIntervalIndex, setCurrentIntervalIndex] = useState(0);
   const [remainingTime, setRemainingTime] = useState(INTERVALS[0]);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const config = getAppConfig();
 
   // 戻るボタンを無効化
@@ -101,13 +95,6 @@ export default function TimerApp() {
     };
   }, [screen]);
 
-  const handleClose = () => {
-    // ユーザー操作による明示的な終了（自動強制終了はしない）
-    if (BackHandler.exitApp) {
-      BackHandler.exitApp();
-    }
-  };
-
   // 起動画面（メッセージ表示のみ、自動でスタート）
   if (screen === "launch") {
     return (
@@ -128,13 +115,10 @@ export default function TimerApp() {
     );
   }
 
-  // 終了画面
+  // 終了画面（凍結状態：入力・遷移を受け付けない）
   return (
-    <View style={styles.endContainer}>
+    <View style={styles.endContainer} pointerEvents="none">
       <Text style={styles.endText}>{config.endText}</Text>
-      <TouchableOpacity style={styles.closeButton} onPress={handleClose}>
-        <Text style={styles.closeButtonText}>閉じる</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -176,20 +160,6 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 20,
     textAlign: "center",
-    marginBottom: 60,
     lineHeight: 32,
-  },
-  closeButton: {
-    backgroundColor: "#333333",
-    paddingHorizontal: 60,
-    paddingVertical: 20,
-    borderRadius: 8,
-    minWidth: 200,
-    alignItems: "center",
-  },
-  closeButtonText: {
-    color: "#FFFFFF",
-    fontSize: 18,
-    fontWeight: "500",
   },
 });
