@@ -20,10 +20,10 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
     appName: "END 3min",
     launchText: "終業前の3分を開始",
     executionTexts: [
-      "いま、残っている感覚を一つだけ感じる",
-      "吐く終わりで、抜ける方向だけ許可",
-      "言葉が出たら\n「今は使わない」と一回だけ",
-      "さっきより弱い、が一つあれば十分",
+      "残っている感覚が薄れていく",
+      "抜ける方向に\nゆっくり吐く",
+      "思考は遠ざかる\n考えは使われない",
+      "さっきより弱い\nそれで十分",
     ],
     endText: "今日は切り替わった気がする",
     dotColor: "#FFFFFF", // 白
@@ -36,8 +36,8 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
     appName: "SLEEP 3min",
     launchText: "寝る前の3分を開始",
     executionTexts: [
-      "いま、残っている感覚を一つだけ感じる",
-      "吐く終わりで、抜ける方向だけ許可",
+      "残っている感覚を\n一つだけ感じる",
+      "吐く終わりで\n抜ける方向に",
       "言葉が出たら\n「今は使わない」と一回だけ",
       "さっきより弱い、が一つあれば十分",
     ],
@@ -50,14 +50,14 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
   },
   DECIDE: {
     appName: "NOW NOT DECIDE",
-    launchText: "今決めたい感覚を、一つだけ感じる",
+    launchText: "いま決めたい感覚を\n一つだけ感じる",
     executionTexts: [
-      "いま決めたい感覚を、一つだけ感じる",
-      "吐く終わりで、抜ける方向だけ許可",
+      "決めたい感覚が\n薄れていく",
+      "抜ける方向に\nゆっくり吐く",
       "言葉が出たら\n「今は決めない」と一回だけ",
       "「さっきより弱い」が一つあれば終了",
     ],
-    endText: "終わりました。何もしないでください",
+    endText: "終わりました\n何もしないでください",
     dotColor: "#FF0000", // 赤
     bundleId: {
       ios: "com.timer.nownotdecide",
