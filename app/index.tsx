@@ -33,6 +33,17 @@ export default function TimerApp() {
     return () => backHandler.remove();
   }, []);
 
+  // 起動画面でメッセージ表示後、自動でタイマー開始
+  useEffect(() => {
+    if (screen !== "launch") return;
+    const timer = setTimeout(() => {
+      setScreen("execution");
+      setCurrentIntervalIndex(0);
+      setRemainingTime(INTERVALS[0]);
+    }, 1500); // 1.5秒表示してから自動スタート
+    return () => clearTimeout(timer);
+  }, [screen]);
+
   // タイマー処理
   useEffect(() => {
     if (screen !== "execution") {
@@ -90,12 +101,6 @@ export default function TimerApp() {
     };
   }, [screen]);
 
-  const handleStart = () => {
-    setScreen("execution");
-    setCurrentIntervalIndex(0);
-    setRemainingTime(INTERVALS[0]);
-  };
-
   const handleClose = () => {
     // ユーザー操作による明示的な終了（自動強制終了はしない）
     if (BackHandler.exitApp) {
@@ -103,13 +108,10 @@ export default function TimerApp() {
     }
   };
 
-  // 起動画面
+  // 起動画面（メッセージ表示のみ、自動でスタート）
   if (screen === "launch") {
     return (
       <View style={styles.launchContainer}>
-        <TouchableOpacity style={styles.startButton} onPress={handleStart}>
-          <Text style={styles.startButtonText}>開始</Text>
-        </TouchableOpacity>
         <Text style={styles.launchText}>{config.launchText}</Text>
       </View>
     );
@@ -148,21 +150,7 @@ const styles = StyleSheet.create({
   launchText: {
     color: "#FFFFFF",
     fontSize: 18,
-    marginTop: 40,
     textAlign: "center",
-  },
-  startButton: {
-    backgroundColor: "#333333",
-    paddingHorizontal: 60,
-    paddingVertical: 20,
-    borderRadius: 8,
-    minWidth: 200,
-    alignItems: "center",
-  },
-  startButtonText: {
-    color: "#FFFFFF",
-    fontSize: 18,
-    fontWeight: "500",
   },
   executionContainer: {
     flex: 1,
