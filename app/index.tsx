@@ -15,15 +15,12 @@ export default function TimerApp() {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const config = getAppConfig();
 
-  // 戻るボタンを無効化
+  // 戻るボタンを無効化（exitApp は使わない: RNExitApp / BackHandler.exitApp は使用しない）
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
-      () => {
-        return true; // 戻るボタンを無効化
-      },
+      () => true, // イベントを消費して戻るを無効化
     );
-
     return () => backHandler.remove();
   }, []);
 
