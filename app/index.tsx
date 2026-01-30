@@ -27,14 +27,14 @@ export default function TimerApp() {
     return () => backHandler.remove();
   }, []);
 
-  // 起動画面でメッセージ表示後、自動でタイマー開始
+  // 起動後：文字なし・UIなしの暗転（0.5〜1.0秒）→ 自動で①テキスト表示へ（プロトコルは起動時点で開始）
   useEffect(() => {
     if (screen !== "launch") return;
     const timer = setTimeout(() => {
       setScreen("execution");
       setCurrentIntervalIndex(0);
       setRemainingTime(INTERVALS[0]);
-    }, 1500); // 1.5秒表示してから自動スタート
+    }, 750); // 暗転 0.75秒
     return () => clearTimeout(timer);
   }, [screen]);
 
@@ -95,13 +95,9 @@ export default function TimerApp() {
     };
   }, [screen]);
 
-  // 起動画面（メッセージ表示のみ、自動でスタート）
+  // 起動画面：文字なし・UIなしの暗転のみ
   if (screen === "launch") {
-    return (
-      <View style={styles.launchContainer}>
-        <Text style={styles.launchText}>{config.launchText}</Text>
-      </View>
-    );
+    return <View style={styles.launchContainer} />;
   }
 
   // 実行画面
@@ -127,14 +123,6 @@ const styles = StyleSheet.create({
   launchContainer: {
     flex: 1,
     backgroundColor: "#111111",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  launchText: {
-    color: "#FFFFFF",
-    fontSize: 18,
-    textAlign: "center",
   },
   executionContainer: {
     flex: 1,

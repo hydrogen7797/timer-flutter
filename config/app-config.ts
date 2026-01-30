@@ -25,7 +25,7 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
       "思考は遠ざかる\n考えは使われない",
       "さっきより弱い\nそれで十分",
     ],
-    endText: "今日は切り替わった気がする",
+    endText: "今日は切り替わった",
     dotColor: "#FFFFFF", // 白
     bundleId: {
       ios: "com.timer.end3min",
@@ -41,7 +41,7 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
       "言葉が出たら\n「今は使わない」と一回だけ",
       "さっきより弱い、が一つあれば十分",
     ],
-    endText: "このまま何もしないでください",
+    endText: "おやすみなさい",
     dotColor: "#0000FF", // 青
     bundleId: {
       ios: "com.timer.sleep3min",
@@ -57,7 +57,7 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
       "言葉が出たら\n「今は決めない」と一回だけ",
       "「さっきより弱い」が一つあれば終了",
     ],
-    endText: "終わりました\n何もしないでください",
+    endText: "何もしない",
     dotColor: "#FF0000", // 赤
     bundleId: {
       ios: "com.timer.nownotdecide",
