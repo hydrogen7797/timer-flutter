@@ -81,7 +81,26 @@ eas build --platform android --profile production
 
 ### 方法2: ローカルビルド
 
-#### iOS
+#### iOS（Xcode でビルドする場合）
+
+**Mac で Xcode を使う手順**
+
+1. 対象アプリの `app.json` を用意（例: NOW NOT DECIDE の場合は `app.json` が `app-decide.json` の内容になっていればよい）
+2. iOS 用ネイティブプロジェクトを生成して Xcode で開く:
+   ```bash
+   npm run xcode
+   ```
+   または手動で:
+   ```bash
+   npm run ios:prebuild
+   open ios/*.xcworkspace
+   ```
+3. Xcode でシミュレータまたは実機を選び、Run (⌘R) でビルド・実行
+4. リリースビルドは Xcode の Product → Archive から作成可能
+
+**注意:** `ios/` フォルダは `expo prebuild` で生成されるため、ネイティブの手動編集は次回の prebuild で上書きされる場合があります。永続的な変更は `app.json` の `expo.plugins` や `config` プラグインで行ってください。
+
+#### iOS（CLI のみ）
 ```bash
 # END 3min
 cp app-end.json app.json
