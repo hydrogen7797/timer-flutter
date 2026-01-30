@@ -36,10 +36,10 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
     appName: "SLEEP 3min",
     launchText: "寝る前の3分を開始",
     executionTexts: [
-      "残っている感覚を\n一つだけ感じる",
-      "吐く終わりで\n抜ける方向に",
-      "言葉が出たら\n「今は使わない」と一回だけ",
-      "さっきより弱い、が一つあれば十分",
+      "残っている感覚",
+      "抜ける方向に\nゆっくり吐く",
+      "言葉が出ても\n使わない",
+      "弱くなっている\nそれで十分",
     ],
     endText: "おやすみなさい",
     dotColor: "#0000FF", // 青
@@ -54,8 +54,8 @@ export const APP_CONFIGS: Record<AppType, AppConfig> = {
     executionTexts: [
       "決めたい感覚が\n薄れていく",
       "抜ける方向に\nゆっくり吐く",
-      "言葉が出たら\n「今は決めない」と一回だけ",
-      "「さっきより弱い」が一つあれば終了",
+      "言葉は浮かばない\n今は決めない",
+      "弱くなっている\nそれで十分",
     ],
     endText: "何もしない",
     dotColor: "#FF0000", // 赤
