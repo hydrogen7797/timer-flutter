@@ -10,7 +10,11 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.timer.nownotdecide"
+      "bundleIdentifier": "com.timer.nownotdecide",
+      "deploymentTarget": "15.1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "package": "com.timer.nownotdecide",
@@ -38,7 +42,11 @@
       "reactCompiler": true
     },
     "extra": {
-      "appType": "DECIDE"
+      "appType": "DECIDE",
+      "router": {},
+      "eas": {
+        "projectId": "31589630-fc85-43c5-9848-05f63db31c86"
+      }
     }
   }
 }

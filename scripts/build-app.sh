@@ -45,6 +45,11 @@ if [ "$PLATFORM" = "ios" ]; then
   npx expo run:ios --configuration Release
 else
   echo "Androidビルドを実行中..."
+  echo "Android用のネイティブプロジェクトを再生成しています (expo prebuild --clean)..."
+  # 現在のapp.json (END / SLEEP / DECIDE) に合わせて android/ を再生成
+  npx expo prebuild --platform android --clean
+
+  echo "Androidリリースビルドを実行中..."
   # EAS Buildを使用する場合
   # eas build --platform android --profile production
   # またはローカルビルド
